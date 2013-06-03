@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour {
 		
 		primary = GetComponent<Weapon>();
 		
-		if(primary = null)
+		if(primary == null)
 			print ("NO WEAPON");
 
 	}

@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Weapon.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game Assets\SharedAssets\PlayerController.cs">
     <Files>
-      <File FileName="Assets\PlayerController.cs" Line="18" Column="29" />
-      <File FileName="Assets\FarseerUnity\FSWorldComponent.cs" Line="81" Column="1" />
-      <File FileName="Assets\FarseerUnity\FSBodyComponent.cs" Line="111" Column="1" />
-      <File FileName="Assets\Weapon.cs" Line="7" Column="53" />
+      <File FileName="Assets\FarseerUnity\FSWorldComponent.cs" Line="1" Column="1" />
+      <File FileName="Assets\FarseerUnity\FSBodyComponent.cs" Line="1" Column="1" />
       <File FileName="Assets\Standard Assets\Projectors\Guidelines.txt" Line="1" Column="1" />
+      <File FileName="Assets\Game Assets\SharedAssets\Weapon.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game Assets\SharedAssets\PlayerController.cs" Line="54" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

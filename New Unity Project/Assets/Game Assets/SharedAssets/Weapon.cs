@@ -15,14 +15,16 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-		fireRateTimer -= Time.fixedDeltaTime;
+	void Update () {
+		fireRateTimer -= Time.deltaTime;
 	}
 	
 	
 	public void Fire() {
-		if(fireRateTimer >= 0.0f) {
-			Instantiate(projectile);
+		print ("attempting to fire");
+		if(fireRateTimer <= 0.0f) {
+			print ("FIRING!!");
+			Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
 			
 			fireRateTimer = fireRate;	
 		}
