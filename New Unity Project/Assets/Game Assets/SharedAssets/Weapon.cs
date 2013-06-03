@@ -1,16 +1,23 @@
 using UnityEngine;
 using System.Collections;
+using FarseerPhysics.Dynamics;
+using FVector2 = Microsoft.Xna.Framework.FVector2;
+
 
 public class Weapon : MonoBehaviour {
 	
 	public float fireRate = 0.05f;
-	public float weaponAngle = 90.0f; // default upward
 	public GameObject projectile;
 	
 	private float fireRateTimer = 0.0f;
 	
+	private FVector2 direction = new FVector2(0.0f, 1.0f);
+	
+	private Body body;
+	
 	// Use this for initialization
 	void Start () {
+		body = GetComponent<FSBodyComponent>().PhysicsBody;
 		
 	}
 	
@@ -21,13 +28,16 @@ public class Weapon : MonoBehaviour {
 	
 	
 	public void Fire() {
-		print ("attempting to fire");
+		//print ("attempting to fire");
 		if(fireRateTimer <= 0.0f) {
-			print ("FIRING!!");
-			Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
-			
+			GameObject shot =(GameObject) Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
+			shot.GetComponent<ProjectileBasic>().SetDirection(direction);
 			fireRateTimer = fireRate;	
 		}
+	}
+	
+	public void SetDirection(FVector2 newDir) {
+		direction = new FVector2(newDir.X, newDir.Y);	
 	}
 	
 

@@ -28,8 +28,11 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+			//	body.Rotation += 0.05f;
+
 		HorizontalInput();
 		PrimaryInput();
+		UpdateShotAngle();
 	}
 	
 	private void HorizontalInput() {
@@ -52,11 +55,27 @@ public class PlayerController : MonoBehaviour {
 	private void PrimaryInput() {
 		if(Input.GetKey(KeyCode.Mouse0)){
 			primary.Fire();
-			print ("FIRE");
 		}
 	}
 	
 	private void SecondaryInput() {
 		
+	}
+	
+	private void UpdateShotAngle() {
+		Ray ray  = Camera.main.ScreenPointToRay(Input.mousePosition);
+		Vector3 temp3 = ray.origin - gameObject.transform.position;
+		FVector2 temp2 = new FVector2(temp3.x, temp3.y);
+		temp2.Normalize();
+		
+		primary.SetDirection(temp2);
+		
+		//print (temp2);
+		
+		/*
+		angleInRads = Mathf.Acos(temp2.X);
+		if(temp2.Y < 0.0f ) {
+			angleInRads = 2*Mathf.PI - angleInRads;	
+		}*/
 	}
 }

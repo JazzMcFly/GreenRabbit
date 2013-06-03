@@ -18,10 +18,7 @@ public class ProjectileBasic : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		body = GetComponent<FSBodyComponent>().PhysicsBody;
-		body.FixedRotation = true;
-		body.LinearVelocity = new FVector2(0.0f, projectileSpeed);
-		body.OnCollision += OnCollisionEvent;
+		SetupPhysics();
 	}
 	
 	// Update is called once per frame
@@ -33,7 +30,28 @@ public class ProjectileBasic : MonoBehaviour {
 		}
 	}
 	
+	//MUST BE NORMALIZED VECTOR
+	public void SetDirection(FVector2 newDir) {
+		SetupPhysics();
+		body.LinearVelocity = new FVector2(projectileSpeed*newDir.X, projectileSpeed*newDir.Y);	
+		
+		float angleInRads = Mathf.Acos(newDir.X);
+		if(newDir.Y < 0.0f)
+			angleInRads = 2*Mathf.PI - angleInRads;
+		body.Rotation = angleInRads;
+	}
+	
 	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
 			return false;
 	}
+	
+	private void SetupPhysics() {
+		if(body == null) {
+			body = GetComponent<FSBodyComponent>().PhysicsBody;
+			body.FixedRotation = true;
+			//body.LinearVelocity = new FVector2(0.0f, projectileSpeed);
+			body.OnCollision += OnCollisionEvent;
+		}
+	}
+	
 }
