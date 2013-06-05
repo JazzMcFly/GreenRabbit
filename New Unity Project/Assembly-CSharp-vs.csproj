@@ -44,6 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Explosion.cs" />
      <Compile Include="Assets\FarseerUnity\Base\FSCollisionGroup.cs" />
      <Compile Include="Assets\FarseerUnity\Base\FSEnums.cs" />
      <Compile Include="Assets\FarseerUnity\Base\FSJointComponent.cs" />

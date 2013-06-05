@@ -6,6 +6,8 @@ using FVector2 = Microsoft.Xna.Framework.FVector2;
 
 public class ProjectileBasic : MonoBehaviour {
 	
+	
+	
 	public float damage = 1.0f;
 	public float projectileSpeed = 22.0f;
 	public float lifespan = 1.5f;
@@ -15,6 +17,7 @@ public class ProjectileBasic : MonoBehaviour {
 	public bool isBouncy = false;
 	
 	private Body body;
+	private FVector2 normalizedVelocity;
 	
 	// Use this for initialization
 	void Start () {
@@ -33,6 +36,8 @@ public class ProjectileBasic : MonoBehaviour {
 	//MUST BE NORMALIZED VECTOR
 	public void SetDirection(FVector2 newDir) {
 		SetupPhysics();
+		
+		normalizedVelocity = new FVector2(newDir.X, newDir.Y);
 		body.LinearVelocity = new FVector2(projectileSpeed*newDir.X, projectileSpeed*newDir.Y);	
 		
 		float angleInRads = Mathf.Acos(newDir.X);
@@ -41,16 +46,31 @@ public class ProjectileBasic : MonoBehaviour {
 		body.Rotation = angleInRads;
 	}
 	
+	public void SetSpeed(float newSpeed) {
+		
+		projectileSpeed = newSpeed;
+		
+		if(normalizedVelocity == null || normalizedVelocity.Length() == 0.0f) {
+			//if no direction, assume straight upwards
+			normalizedVelocity = new FVector2(0.0f, 1.0f);
+		}
+		body.LinearVelocity = new FVector2(projectileSpeed*normalizedVelocity.X, projectileSpeed*normalizedVelocity.Y);	
+	}
+	
 	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
 			return true;
 	}
+	
 	
 	private void SetupPhysics() {
 		if(body == null) {
 			body = GetComponent<FSBodyComponent>().PhysicsBody;
 			body.FixedRotation = true;
 			body.IsSensor = !isBouncy;
-			body.IgnoreGravity = !hasGravity;
+
+			if(!hasGravity)
+				body.GravityScale = 0.0f;
+			
 			//body.LinearVelocity = new FVector2(0.0f, projectileSpeed);
 			body.OnCollision += OnCollisionEvent;
 		}
