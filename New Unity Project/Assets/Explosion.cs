@@ -9,7 +9,7 @@ using FarseerPhysics.Collision.Shapes;
 public class Explosion : MonoBehaviour {
 	
 	public float minRadius = 1.0f;
-	public float maxRadius = 10.0f;
+	public float maxRadius = 5.0f;
 	public float expansionTime = 0.2f;
 	public float lifeSpan = 1.0f;
 	public float damage = 100.0f;
@@ -27,7 +27,12 @@ public class Explosion : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		shape.Radius += expansionRate*Time.fixedDeltaTime;
+		//shape.Radius += expansionRate*Time.fixedDeltaTime;
+		lifeSpan -= Time.fixedDeltaTime;
+		
+		if(lifeSpan <= 0.0f) {
+			GameObject.Destroy(gameObject);	
+		}
 	}
 	
 	private void SetupPhysics() {
@@ -35,10 +40,12 @@ public class Explosion : MonoBehaviour {
 		body.IsSensor = true;
 		body.GravityScale = 0.0f; //Explosions aren't affected by gravity
 		
-		shape = GetComponent<FSShapeComponent>().GetShape();
-		shape.Radius = minRadius;
+		
+		//shape = GetComponent<FSShapeComponent>().GetShape();
+		//shape.Radius = minRadius;
 		
 		expansionRate = (maxRadius - minRadius) / expansionTime; 
+		gameObject.transform.localScale = new Vector3(maxRadius, maxRadius, 1.0f);
 	}
 
 	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {

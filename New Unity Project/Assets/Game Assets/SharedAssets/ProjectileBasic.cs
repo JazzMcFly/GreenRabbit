@@ -16,6 +16,8 @@ public class ProjectileBasic : MonoBehaviour {
 	public bool hasGravity = false;
 	public bool isBouncy = false;
 	
+	public GameObject explosion;
+	
 	private Body body;
 	private FVector2 normalizedVelocity;
 	
@@ -58,6 +60,11 @@ public class ProjectileBasic : MonoBehaviour {
 	}
 	
 	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
+			if(explosion != null) {
+				Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
+			}
+			GameObject.Destroy(gameObject);
+		
 			return true;
 	}
 	
@@ -71,7 +78,6 @@ public class ProjectileBasic : MonoBehaviour {
 			if(!hasGravity)
 				body.GravityScale = 0.0f;
 			
-			//body.LinearVelocity = new FVector2(0.0f, projectileSpeed);
 			body.OnCollision += OnCollisionEvent;
 		}
 	}
