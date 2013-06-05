@@ -45,7 +45,7 @@ public class ProjectileBasic : MonoBehaviour {
 		float angleInRads = Mathf.Acos(newDir.X);
 		if(newDir.Y < 0.0f)
 			angleInRads = 2*Mathf.PI - angleInRads;
-		body.Rotation = angleInRads;
+		body.Rotation = angleInRads + (0.5f)*Mathf.PI;
 	}
 	
 	public void SetSpeed(float newSpeed) {
@@ -60,6 +60,11 @@ public class ProjectileBasic : MonoBehaviour {
 	}
 	
 	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
+		
+			if(fixtureB.Body.UserFSBodyComponent.gameObject.tag == "Explosion") {
+				return false;
+			}
+		
 			if(explosion != null) {
 				Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
 			}
