@@ -6,8 +6,6 @@ using FVector2 = Microsoft.Xna.Framework.FVector2;
 
 public class ProjectileBasic : MonoBehaviour {
 	
-	
-	
 	public float damage = 1.0f;
 	public float projectileSpeed = 22.0f;
 	public float lifespan = 1.5f;
@@ -57,6 +55,10 @@ public class ProjectileBasic : MonoBehaviour {
 			normalizedVelocity = new FVector2(0.0f, 1.0f);
 		}
 		body.LinearVelocity = new FVector2(projectileSpeed*normalizedVelocity.X, projectileSpeed*normalizedVelocity.Y);	
+	}
+	
+	public float GetDamage() {
+		return damage;	
 	}
 	
 	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {

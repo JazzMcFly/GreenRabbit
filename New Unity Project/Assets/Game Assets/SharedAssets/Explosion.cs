@@ -35,6 +35,10 @@ public class Explosion : MonoBehaviour {
 		}
 	}
 	
+	public float GetDamage() {
+		return damage;	
+	}
+	
 	private void SetupPhysics() {
 		body = GetComponent<FSBodyComponent>().PhysicsBody;
 		body.IsSensor = true;
