@@ -13,8 +13,8 @@ public class Explosion : MonoBehaviour {
 	public float expansionTime = 0.2f;
 	public float lifeSpan = 1.0f;
 	public float damage = 100.0f;
-	public float maxImpactOnPlayer = 20.0f;
-	public float minImpactOnPlayer = 2.0f;
+	public float maxImpactOnPlayer = 0.0f;
+	public float minImpactOnPlayer = 0.0f;
 	
 	private Body body;
 	private Shape shape;
@@ -40,19 +40,35 @@ public class Explosion : MonoBehaviour {
 	}
 	
 	private void SetupPhysics() {
-		body = GetComponent<FSBodyComponent>().PhysicsBody;
-		body.IsSensor = true;
-		body.GravityScale = 0.0f; //Explosions aren't affected by gravity
+		if(body == null) {
+			body = GetComponent<FSBodyComponent>().PhysicsBody;
+			body.IsSensor = true;
+			body.GravityScale = 0.0f; //Explosions aren't affected by gravity
+			body.OnCollision += OnCollisionEvent;
 		
+			//shape = GetComponent<FSShapeComponent>().GetShape();
+			//shape.Radius = minRadius;
 		
-		//shape = GetComponent<FSShapeComponent>().GetShape();
-		//shape.Radius = minRadius;
-		
-		expansionRate = (maxRadius - minRadius) / expansionTime; 
-		gameObject.transform.localScale = new Vector3(maxRadius, maxRadius, 1.0f);
+			expansionRate = (maxRadius - minRadius) / expansionTime; 
+			gameObject.transform.localScale = new Vector3(maxRadius, maxRadius, 1.0f);
+		}
 	}
 
 	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
+		
+		if(fixtureB.Body.UserFSBodyComponent.gameObject.tag == "Player") {
+			print ("IMPACT!!");
+			FVector2 playerPos = fixtureB.Body.Position;
+			FVector2 explosionPos = body.Position;
+			
+			FVector2 result = playerPos - explosionPos;
+			
+			float distance = result.Length();
+			result.Normalize();
+			
+			float playerImpact = result.Y * distance * (maxImpactOnPlayer - minImpactOnPlayer) / maxRadius;
+			fixtureB.Body.LinearVelocity = new FVector2(fixtureB.Body.LinearVelocity.X, minImpactOnPlayer + playerImpact);
+		}
 		return false;
 	}
 }
