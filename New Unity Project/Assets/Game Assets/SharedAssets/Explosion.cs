@@ -27,9 +27,19 @@ public class Explosion : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		//shape.Radius += expansionRate*Time.fixedDeltaTime;
-		lifeSpan -= Time.fixedDeltaTime;
 		
+		if(shape.Radius < maxRadius){		
+			shape.Radius += expansionRate*Time.fixedDeltaTime;
+		} else {
+			shape.Radius = maxRadius;	
+		}		
+		body.DestroyFixture(body.FixtureList[0]);
+		body.CreateFixture(shape);
+		gameObject.transform.localScale = new Vector3(2*shape.Radius, 2*shape.Radius, 1.0f);
+		//print (shape.Radius);
+		SetupPhysics();
+		
+		lifeSpan -= Time.fixedDeltaTime;
 		if(lifeSpan <= 0.0f) {
 			GameObject.Destroy(gameObject);	
 		}
@@ -39,19 +49,21 @@ public class Explosion : MonoBehaviour {
 		return damage;	
 	}
 	
-	private void SetupPhysics() {
-		if(body == null) {
+	private void SetupPhysics() {	
+		if(body == null) {			
 			body = GetComponent<FSBodyComponent>().PhysicsBody;
-			body.IsSensor = true;
-			body.GravityScale = 0.0f; //Explosions aren't affected by gravity
-			body.OnCollision += OnCollisionEvent;
-		
-			//shape = GetComponent<FSShapeComponent>().GetShape();
-			//shape.Radius = minRadius;
+			shape = GetComponent<FSShapeComponent>().GetShape();
+			shape.Radius = minRadius;
+			
+			body.DestroyFixture(body.FixtureList[0]);
+			body.CreateFixture(shape);
 		
 			expansionRate = (maxRadius - minRadius) / expansionTime; 
-			gameObject.transform.localScale = new Vector3(maxRadius, maxRadius, 1.0f);
+			gameObject.transform.localScale = new Vector3(2*minRadius, 2*minRadius, 1.0f);
 		}
+		body.IsSensor = true;
+		body.GravityScale = 0.0f; //Explosions aren't affected by gravity
+		body.OnCollision += OnCollisionEvent;
 	}
 
 	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
