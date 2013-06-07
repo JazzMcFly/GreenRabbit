@@ -24,9 +24,15 @@ public class Weapon : MonoBehaviour {
 	public WeaponInput weaponInput;
 	public GameObject projectile;
 	
+	public float minChargeToFire = 20.0f;
+	public float maxCharge = 100.0f;
+	public float chargePerSec = 40.0f;
+	
 	private float fireRateTimer = 0.0f;
 	private KeyCode weaponButton;
 	private FVector2 direction = new FVector2(0.0f, 1.0f);
+	
+	private float currentCharge = 0.0f;
 	
 	// Use this for initialization
 	void Start () {
@@ -61,9 +67,11 @@ public class Weapon : MonoBehaviour {
 			if(Input.GetKeyDown(weaponButton))
 				Fire();
 			break;
-		case WeaponType.Charge: //TODO: Needs charge counter and eventual GUI Visual
+		case WeaponType.Charge: 
+			if(Input.GetKey(weaponButton))
+				ChargeIncrease();
 			if(Input.GetKeyUp(weaponButton))
-				Fire();
+				ChargeRelease();
 			break;
 		default:
 			print ("NO WEAPON TYPE!");
@@ -78,6 +86,30 @@ public class Weapon : MonoBehaviour {
 			GameObject shot =(GameObject) Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
 			shot.GetComponent<ProjectileBasic>().SetDirection(direction);
 		}
+	}
+			
+	public void ChargeIncrease() {
+		currentCharge += chargePerSec*Time.deltaTime;
+	}
+	
+	public void ChargeRelease() {
+		if(currentCharge >= minChargeToFire) {
+			Fire ();	
+		}
+		currentCharge = 0.0f; 
+	}
+	
+	//Returns raw charge value
+	public float GetCurrentCharge() {
+		return currentCharge;				
+	}
+	
+	public float GetCurrentChargePercentage() {
+		return currentCharge/maxCharge;			
+	}
+	
+	public float GetMaxCharge() {
+		return maxCharge;	
 	}
 	
 	public void SetDirection(FVector2 newDir) {
