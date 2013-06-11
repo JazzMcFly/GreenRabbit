@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour {
 		Auto,
 		SingleShot,
 		Charge
-	}
+	}	
 	
 	public float fireRate = 0.05f;
 	public WeaponType weaponType;
@@ -112,9 +112,12 @@ public class Weapon : MonoBehaviour {
 		return maxCharge;	
 	}
 	
+	public float GetMinCharge() {
+		return minChargeToFire;	
+	}
+	
 	public void SetDirection(FVector2 newDir) {
 		direction = new FVector2(newDir.X, newDir.Y);	
 	}
 	
-
 }

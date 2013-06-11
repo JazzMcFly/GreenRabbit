@@ -9,6 +9,8 @@ public class Health : MonoBehaviour {
 	public float maxHealth = 100.0f;
 	public bool invulnrable = false;
 	public float spawnInvulnerableTime = 0.0f;
+	
+	[HideInInspector]
 	public bool isDead = false;
 	
 	private float currHealth;

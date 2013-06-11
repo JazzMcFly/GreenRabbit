@@ -44,6 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\DiamondShape.cs" />
      <Compile Include="Assets\FarseerUnity\Base\FSCollisionGroup.cs" />
      <Compile Include="Assets\FarseerUnity\Base\FSEnums.cs" />
      <Compile Include="Assets\FarseerUnity\Base\FSJointComponent.cs" />
@@ -177,7 +178,9 @@
      <Compile Include="Assets\FarseerUnity\FSWorldComponent.cs" />
      <Compile Include="Assets\FarseerUnity\Support Files\Test_iOS\TestII.cs" />
      <Compile Include="Assets\FarseerUnity\Support Files\Tutorials [PDF]\Tutorials\Part 4\CollisionEventsDone\TestCollisionEventsDoneCp.cs" />
-     <Compile Include="Assets\Game Assets\SharedAssets\Armor.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\ArmorFan.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\ArmorShard.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\ChargeGUI.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\Explosion.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\Health.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\PhysicsProperties.cs" />
@@ -281,6 +284,8 @@
      <Compile Include="Assets\Orthello\Standard Assets\OT\_Base\OTPB.cs" />
      <Compile Include="Assets\Orthello\Standard Assets\OT\_Base\OTSounds.cs" />
      <Compile Include="Assets\Orthello\Standard Assets\OT\_Base\OTTimeCycle.cs" />
+     <Compile Include="Assets\TriangleEqualateral.cs" />
+     <Compile Include="Assets\TriangleIsosceles.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
