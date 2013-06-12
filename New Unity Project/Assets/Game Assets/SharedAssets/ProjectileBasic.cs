@@ -16,6 +16,9 @@ public class ProjectileBasic : MonoBehaviour {
 	
 	public GameObject explosion;
 	
+	[HideInInspector]
+	public bool disarmed = false;
+	
 	private Body body;
 	private FVector2 normalizedVelocity;
 	
@@ -57,12 +60,22 @@ public class ProjectileBasic : MonoBehaviour {
 		body.LinearVelocity = new FVector2(projectileSpeed*normalizedVelocity.X, projectileSpeed*normalizedVelocity.Y);	
 	}
 	
+	public void Disarm() {
+		disarmed = true;
+		body.FixedRotation = false;
+	}
+	
 	public float GetDamage() {
-		return damage;	
+		if(!disarmed) {
+			return damage;
+		} else {
+			return 0.0f;	
+		}
 	}
 	
 	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
 		
+		if(!disarmed) {
 			if(fixtureB.Body.UserFSBodyComponent.gameObject.tag == "Explosion") {
 				return false;
 			}
@@ -71,8 +84,8 @@ public class ProjectileBasic : MonoBehaviour {
 				Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
 			}
 			GameObject.Destroy(gameObject);
-		
-			return true;
+		}
+		return true;
 	}
 	
 	
@@ -80,7 +93,8 @@ public class ProjectileBasic : MonoBehaviour {
 		if(body == null) {
 			body = GetComponent<FSBodyComponent>().PhysicsBody;
 			body.FixedRotation = true;
-			body.IsSensor = !isBouncy;
+			//body.IsSensor = !isBouncy;
+			body.IsBullet = true;
 
 			if(!hasGravity)
 				body.GravityScale = 0.0f;

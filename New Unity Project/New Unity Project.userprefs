@@ -1,16 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game Assets\SharedAssets\Armor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game Assets\SharedAssets\ArmorFan.cs">
     <Files>
+      <File FileName="Assets\Game Assets\SharedAssets\ArmorFan.cs" Line="15" Column="28" />
       <File FileName="Assets\TriangleEqualateral.cs" Line="32" Column="48" />
       <File FileName="Assets\Game Assets\SharedAssets\Weapon.cs" Line="1" Column="1" />
       <File FileName="Assets\Game Assets\SharedAssets\Explosion.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game Assets\SharedAssets\Armor.cs" Line="24" Column="18" />
-      <File FileName="Assets\Game Assets\SharedAssets\ArmorShard.cs" Line="33" Column="69" />
+      <File FileName="Assets\Game Assets\SharedAssets\ArmorShard.cs" Line="49" Column="1" />
       <File FileName="Assets\FarseerUnity\FSBodyComponent.cs" Line="1" Column="1" />
-      <File FileName="Assets\FarseerUnity\Base\FarseerPhysics\Collision\Shapes\PolygonShape.cs" Line="1" Column="1" />
+      <File FileName="Assets\FarseerUnity\Base\FarseerPhysics\Collision\Shapes\PolygonShape.cs" Line="107" Column="21" />
       <File FileName="Assets\DiamondShape.cs" Line="29" Column="61" />
-      <File FileName="Assets\TriangleIsosceles.cs" Line="30" Column="55" />
+      <File FileName="Assets\TriangleIsosceles.cs" Line="101" Column="74" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
