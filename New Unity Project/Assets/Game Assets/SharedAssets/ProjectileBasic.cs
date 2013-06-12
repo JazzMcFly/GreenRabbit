@@ -76,10 +76,10 @@ public class ProjectileBasic : MonoBehaviour {
 	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
 		
 		if(!disarmed) {
+			print ("NOT DISARMED");
 			if(fixtureB.Body.UserFSBodyComponent.gameObject.tag == "Explosion") {
 				return false;
 			}
-		
 			if(explosion != null) {
 				Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
 			}
