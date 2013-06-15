@@ -76,7 +76,7 @@ public class ProjectileBasic : MonoBehaviour {
 	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
 		
 		if(!disarmed) {
-			print ("NOT DISARMED");
+			//print ("NOT DISARMED");
 			if(fixtureB.Body.UserFSBodyComponent.gameObject.tag == "Explosion") {
 				return false;
 			}
@@ -100,6 +100,11 @@ public class ProjectileBasic : MonoBehaviour {
 				body.GravityScale = 0.0f;
 			
 			body.OnCollision += OnCollisionEvent;
+			Vector3 objectRotation = gameObject.transform.eulerAngles;
+			body.Rotation = objectRotation.z + (0.5f)*Mathf.PI;
+			normalizedVelocity = new FVector2(Mathf.Cos(objectRotation.z), Mathf.Sin(objectRotation.z));
+			
+			SetSpeed(projectileSpeed);
 		}
 	}
 	

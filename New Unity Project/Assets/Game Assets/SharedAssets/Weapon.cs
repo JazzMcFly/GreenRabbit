@@ -84,7 +84,7 @@ public class Weapon : MonoBehaviour {
 		if(fireRateTimer <= 0.0f) {
 			fireRateTimer = fireRate;	
 			GameObject shot =(GameObject) Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
-			shot.GetComponent<ProjectileBasic>().SetDirection(direction);
+			//shot.GetComponent<ProjectileBasic>().SetDirection(direction);
 		}
 	}
 			
@@ -117,7 +117,15 @@ public class Weapon : MonoBehaviour {
 	}
 	
 	public void SetDirection(FVector2 newDir) {
-		direction = new FVector2(newDir.X, newDir.Y);	
+		newDir.Normalize();
+		direction = new FVector2(newDir.X, newDir.Y);
+		
+		float zAngle = Mathf.Acos(newDir.X);
+		if(newDir.Y < 0.0f) {
+			zAngle = 2*Mathf.PI - zAngle;	
+		}
+		
+		gameObject.transform.eulerAngles = new Vector3(0.0f, 0.0f,zAngle);
 	}
 	
 }
