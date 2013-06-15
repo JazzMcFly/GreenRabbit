@@ -286,6 +286,7 @@
      <Compile Include="Assets\Orthello\Standard Assets\OT\_Base\OTPB.cs" />
      <Compile Include="Assets\Orthello\Standard Assets\OT\_Base\OTSounds.cs" />
      <Compile Include="Assets\Orthello\Standard Assets\OT\_Base\OTTimeCycle.cs" />
+     <Compile Include="Assets\ProjectileCluster.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />

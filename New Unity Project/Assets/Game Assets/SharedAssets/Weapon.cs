@@ -77,14 +77,15 @@ public class Weapon : MonoBehaviour {
 			print ("NO WEAPON TYPE!");
 			break;
 		}
+		//print (gameObject.transform.rotation.eulerAngles);
 	}
 	
 	public void Fire() {
 		//print ("attempting to fire");
 		if(fireRateTimer <= 0.0f) {
 			fireRateTimer = fireRate;	
-			GameObject shot =(GameObject) Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
-			//shot.GetComponent<ProjectileBasic>().SetDirection(direction);
+			Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
+			//GameObject shot =(GameObject) Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);		
 		}
 	}
 			
@@ -120,12 +121,15 @@ public class Weapon : MonoBehaviour {
 		newDir.Normalize();
 		direction = new FVector2(newDir.X, newDir.Y);
 		
-		float zAngle = Mathf.Acos(newDir.X);
+		float zAngle = Mathf.Acos(newDir.X)*180.0f/Mathf.PI;
 		if(newDir.Y < 0.0f) {
-			zAngle = 2*Mathf.PI - zAngle;	
+			zAngle = 360.0f - zAngle;	
 		}
 		
-		gameObject.transform.eulerAngles = new Vector3(0.0f, 0.0f,zAngle);
+		zAngle -= 90.0f; //Up is our 0 degrees here :P
+		
+		gameObject.transform.rotation = Quaternion.identity;
+		gameObject.transform.Rotate( new Vector3(0.0f, 0.0f,zAngle));
 	}
 	
 }
