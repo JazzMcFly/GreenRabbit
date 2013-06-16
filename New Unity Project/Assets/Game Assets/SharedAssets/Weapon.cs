@@ -56,7 +56,7 @@ public class Weapon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		fireRateTimer -= Time.deltaTime;
+		TickWeaponCoolDown();	
 		
 		switch(weaponType) {
 		case WeaponType.Auto:
@@ -132,4 +132,7 @@ public class Weapon : MonoBehaviour {
 		gameObject.transform.Rotate( new Vector3(0.0f, 0.0f,zAngle));
 	}
 	
+	protected void TickWeaponCoolDown() {
+		fireRateTimer -= Time.deltaTime;
+	}
 }

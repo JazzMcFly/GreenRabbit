@@ -83,6 +83,7 @@ public class ProjectileBasic : MonoBehaviour {
 			if(explosion != null) {
 				Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
 			}
+			//print ("Projectile destoryed");
 			GameObject.Destroy(gameObject);
 		//}
 		return true;

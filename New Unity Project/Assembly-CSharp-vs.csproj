@@ -188,6 +188,7 @@
      <Compile Include="Assets\Game Assets\SharedAssets\PlayerController.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\ProjectileBasic.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\ProjectileCluster.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\Scheduler.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\TriangleEqualateral.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\TriangleIsosceles.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\Weapon.cs" />
