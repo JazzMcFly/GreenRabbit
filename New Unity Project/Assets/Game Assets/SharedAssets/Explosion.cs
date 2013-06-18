@@ -69,7 +69,7 @@ public class Explosion : MonoBehaviour {
 	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
 		
 		if(fixtureB.Body.UserFSBodyComponent.gameObject.tag == "Player") {
-			print ("IMPACT!!");
+			//print ("IMPACT!!");
 			FVector2 playerPos = fixtureB.Body.Position;
 			FVector2 explosionPos = body.Position;
 			
