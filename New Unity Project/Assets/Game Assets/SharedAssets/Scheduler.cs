@@ -19,23 +19,24 @@ public struct FireEvent {
 	public float fireRate;
 	public float delay;
 	public int shotCount;
-	
 }
 
 public class Scheduler : MonoBehaviour {
 
 	private LinkedList<MovementEvent> movementEventList = new LinkedList<MovementEvent>();
-	//private LinkedList<float> movementEventTimers = new LinkedList<float>(); //maybe...
 	private bool movementActive = false;
-	
-	//private LinkedList<FireEvent> fireEventList =  new LinkedList<FireEvent>();
-	//private LinkedList<float> fireEventTimers = new LinkedList<float>();
-	
 	private Body body;
+
+	
+	private LinkedList<FireEvent> fireEventList =  new LinkedList<FireEvent>();
+	private bool fireActive = false;
+	private AIWeapon weapon;
+	
 
 	// Use this for initialization
 	void Start () {
 		SetupPhysics();
+		SetupWeapon();
 	}
 	
 	// Update is called once per frame
@@ -95,25 +96,62 @@ public class Scheduler : MonoBehaviour {
 		}
 	}
 	
-	
-	
 	private FVector2 GetConstantSpeed(FVector2 startPoint, FVector2 endPoint, float travelTime) {
 		FVector2 distanceVector = endPoint - startPoint;
-		//print ("startPoint: " + startPoint);
-		//print ("startPoint: " + endPoint);
-		//print ("distance Vector: " + distanceVector);
 		FVector2 speedVector = new FVector2(distanceVector.X/travelTime, distanceVector.Y/travelTime);	
 		return speedVector;
 	}
 	
-	public void FireEvent() {
-		SetupPhysics();	
+	public void AddFireEvent(float fireRate, int shotCount, float delay = 0.0f) {
+		SetupPhysics();
+		SetupWeapon();
+		FireEvent fireEvent = new FireEvent();
+		fireEvent.fireRate = fireRate;
+		fireEvent.shotCount = shotCount;
+		fireEvent.delay = delay;
+		fireEventList.AddLast(fireEvent);
+		
+		if(!fireActive){
+			StartFireEvent();	
+		}
+	}
+
+	private void StartFireEvent() {
+		StartCoroutine("ExecuteFireEvent");	
 	}
 	
+	private IEnumerator ExecuteFireEvent() {
+		//print ("execute");
+		while(fireEventList.First != null) {
+			//print ("true");
+			fireActive = true;
+			yield return StartCoroutine(FireEventHelper(fireEventList.First.Value));
+			//print ("still true");
+			fireEventList.RemoveFirst();
+		}
+		//print ("out of loop");
+		fireActive = false;
+	}	
 	
-	//Wrapper that allows me to get rid of that nasty return statement
-	public IEnumerator WaitTime(float seconds) {
-		yield return new WaitForSeconds(seconds);	
+	
+	private IEnumerator FireEventHelper(FireEvent fireEvent){
+
+		if(fireEvent.delay > 0.0f) {
+			yield return new WaitForSeconds(fireEvent.delay);
+		}
+		
+		for(int i = 0; i < fireEvent.shotCount; i++) {
+			weapon.Fire();
+			yield return new WaitForSeconds(fireEvent.fireRate);
+		}
+		
+		//shot count of -1 means shoot forever
+		if(fireEvent.shotCount == -1) {
+			while(true) {
+				weapon.Fire();
+				yield return new WaitForSeconds(fireEvent.fireRate);
+			}
+		}
 	}
 	
 	public static Scheduler SpawnEnemy(GameObject objectToSpawn, FVector2 position ) {
@@ -126,6 +164,16 @@ public class Scheduler : MonoBehaviour {
 	private void SetupPhysics() {
 		if(body == null) {
 			body = gameObject.GetComponent<FSBodyComponent>().PhysicsBody;	
+		}
+	}
+	
+	private void SetupWeapon() {
+		if(weapon == null) {
+			weapon = gameObject.GetComponent<AIWeapon>();	
+		}
+		
+		if(weapon == null) {
+			print ("still null");	
 		}
 	}
 }

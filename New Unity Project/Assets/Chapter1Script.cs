@@ -13,6 +13,7 @@ public class Chapter1Script : MonoBehaviour {
 		Scheduler enemy0 = Scheduler.SpawnEnemy(EnemyBasic, new FVector2(0.0f, 10.0f));
 		enemy0.AddMovementEvent(new FVector2(3.0f, 2.0f), 2.0f);
 		enemy0.AddMovementEvent(new FVector2(-4.0f, 10.0f), 1.0f, 1, 2.5f, true); 
+		enemy0.AddFireEvent(0.5f, 2, 2.0f);
 	}
 	
 	// Update is called once per frame

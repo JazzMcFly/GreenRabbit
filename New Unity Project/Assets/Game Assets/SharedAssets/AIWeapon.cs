@@ -3,17 +3,17 @@ using System.Collections;
 
 public class AIWeapon : Weapon {
 	
-//	fireRate = 0.0f;
 	
 	// Use this for initialization
-	//void Start () {
-	//}
+	void Start () {
+		this.fireRate = 0.0f;
+	}
 	
 	
 	
 	// Update is called once per frame
 	void Update () {
-		TickWeaponCoolDown();	
-		Fire();
+		//TickWeaponCoolDown();	
+		//Fire();
 	}
 }

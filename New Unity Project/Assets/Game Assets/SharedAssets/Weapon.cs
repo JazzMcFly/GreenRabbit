@@ -3,6 +3,7 @@ using System.Collections;
 using FarseerPhysics.Dynamics;
 using FVector2 = Microsoft.Xna.Framework.FVector2;
 
+public delegate void OnKill();
 
 public class Weapon : MonoBehaviour {
 	
@@ -49,6 +50,7 @@ public class Weapon : MonoBehaviour {
 		case WeaponInput.Tertiary:
 			weaponButton = KeyCode.Mouse2;
 			break;
+		case WeaponInput.Enemy:
 		default:
 			break;
 		}
