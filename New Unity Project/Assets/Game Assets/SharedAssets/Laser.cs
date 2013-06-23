@@ -17,6 +17,7 @@ public class Laser : MonoBehaviour {
 	public float lifeSpan = 2.0f;
 	public float width = 0.25f;
 	private float length = 50.0f;
+	public float damage = 1000.0f;
 	
 	//Stuff needed for rotation and movement of the laser
 	public GameObject host;
@@ -30,7 +31,8 @@ public class Laser : MonoBehaviour {
 	void Start () {
 		//yield return StartCoroutine(FadeIn(warmupTime));
 		SetupPhysics();
-		StartCoroutine(Sweep (90.0f, 2.0f));
+		SetAngle(90.0f);
+		StartCoroutine(Sweep (-110.0f, 2.0f));
 		StartCoroutine(SetupLifeSpan(lifeSpan));
 	}
 	
@@ -84,8 +86,17 @@ public class Laser : MonoBehaviour {
 			body = GetComponent<FSBodyComponent>().PhysicsBody;
 			Vertices laserPoints = PolygonTools.CreateCapsule(length, width, edgeCount);
 			laserPoints.Translate(new FVector2(0.0f, -(offsetRadius + length/2.0f)));
-			body.CreateFixture(new PolygonShape(laserPoints, 1.0f));		
+			body.CreateFixture(new PolygonShape(laserPoints, 1.0f));
+			body.OnCollision += OnCollisionEvent;
 		}
 	}
 	
+	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
+	
+		Health health = fixtureB.Body.UserFSBodyComponent.gameObject.GetComponent<Health>();
+		if(health != null) {
+			health.Damage(damage);
+		}
+		return false;
+	}
 }
