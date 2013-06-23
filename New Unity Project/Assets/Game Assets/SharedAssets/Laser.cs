@@ -20,9 +20,10 @@ public class Laser : MonoBehaviour {
 	public float damage = 1000.0f;
 	
 	//Stuff needed for rotation and movement of the laser
-	public GameObject host;
-	public bool followHost = true;
+	public GameObject anchor;
+	public bool followAnchor = true;
 	public float offsetRadius = 0.0f;
+	private Body anchorBody;
 	
 	private Body body;
 	
@@ -38,6 +39,9 @@ public class Laser : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(followAnchor == true ) {
+			UpdatePositionToAnchor();	
+		}
 	
 	}
 	
@@ -62,6 +66,13 @@ public class Laser : MonoBehaviour {
 	public void SetAngle(float angleInDegrees) {
 		body.Rotation = angleInDegrees / 180.0f * Mathf.PI;	
 	}
+	
+	private void UpdatePositionToAnchor() {
+		if(anchor != null){
+			body.Position = new FVector2(anchor.transform.position.x, anchor.transform.position.y);	
+		}
+	}
+	
 	
 	private IEnumerator FadeIn(float waitTime) {
 		yield return new WaitForSeconds(waitTime);

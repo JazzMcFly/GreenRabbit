@@ -11,6 +11,8 @@ public delegate void OnDeathEvent();
 public class Health : MonoBehaviour {
 	
 	public float maxHealth = 100.0f;
+	public float regenRate = 0.0f;
+	public float regenDelay = 1.0f;
 	public bool invulnrable = false;
 	public float spawnInvulnerableTime = 0.0f;
 	
@@ -19,6 +21,8 @@ public class Health : MonoBehaviour {
 	
 	private float currHealth;
 	private float invulnerableTimer;
+	
+	private float regenTimer;
 	
 	private Body body;
 	
@@ -52,6 +56,13 @@ public class Health : MonoBehaviour {
 		if(isDead) {
 			GameObject.Destroy(gameObject);	
 		}
+		
+		//Regeneration for health
+		if(regenTimer > 0.0f) {
+			regenTimer -= Time.deltaTime;	
+		} else {
+			Heal (regenRate * Time.deltaTime);	
+		}
 	}
 	
 	public float GetCurrentHealth() {
@@ -70,11 +81,12 @@ public class Health : MonoBehaviour {
 		if(!invulnrable) {
 			currHealth -= damage;
 			ExecuteDamageTakenEvents(damage);
+			ResetRegenTimer();
 			if(currHealth <= 0.0f) {
 				Kill ();
 			}
 		}
-		return !invulnrable;
+		return isDead;
 	}
 	
 	public void Heal(float healz) {
@@ -96,6 +108,10 @@ public class Health : MonoBehaviour {
 		currHealth = 0.0f;
 		isDead = true;
 		ExecuteDeathEvents();
+	}
+	
+	public void ResetRegenTimer() {
+		regenTimer = regenDelay;	
 	}
 	
     public event OnDamageTakenEvent OnDamageTaken
