@@ -185,6 +185,7 @@
      <Compile Include="Assets\Game Assets\SharedAssets\DiamondShape.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\Explosion.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\Health.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\Laser.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\PhysicsProperties.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\PlayerController.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\ProjectileBasic.cs" />

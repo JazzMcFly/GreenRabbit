@@ -1,16 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game Assets\SharedAssets\Scheduler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game Assets\SharedAssets\Laser.cs">
     <Files>
+      <File FileName="Assets\Game Assets\SharedAssets\ProjectileBasic.cs" Line="3" Column="1" />
+      <File FileName="Assets\Game Assets\SharedAssets\Scheduler.cs" Line="1" Column="1" />
       <File FileName="Assets\Game Assets\SharedAssets\Weapon.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game Assets\SharedAssets\Scheduler.cs" Line="31" Column="6" />
       <File FileName="Assets\Game Assets\SharedAssets\Explosion.cs" Line="1" Column="1" />
-      <File FileName="Assets\FarseerUnity\Base\FarseerPhysics\Dynamics\Body.cs" Line="1385" Column="1" />
-      <File FileName="Assets\FarseerUnity\Base\FarseerPhysics\Dynamics\Fixture.cs" Line="110" Column="49" />
+      <File FileName="Assets\FarseerUnity\Base\FarseerPhysics\Dynamics\Body.cs" Line="804" Column="43" />
+      <File FileName="Assets\FarseerUnity\Base\FarseerPhysics\Dynamics\Fixture.cs" Line="140" Column="40" />
       <File FileName="Assets\FarseerUnity\Base\FarseerPhysics\Dynamics\WorldCallbacks.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game Assets\SharedAssets\ProjectileBasic.cs" Line="5" Column="27" />
-      <File FileName="Assets\Chapter1Script.cs" Line="1" Column="1" />
-      <File FileName="Assets\Game Assets\SharedAssets\Health.cs" Line="37" Column="40" />
+      <File FileName="Assets\Chapter1Script.cs" Line="3" Column="18" />
+      <File FileName="Assets\Game Assets\SharedAssets\Health.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game Assets\SharedAssets\AIWeapon.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game Assets\SharedAssets\Laser.cs" Line="37" Column="54" />
+      <File FileName="Assets\Game Assets\SharedAssets\TriangleIsosceles.cs" Line="3" Column="21" />
+      <File FileName="Assets\FarseerUnity\Base\FarseerPhysics\Common\PolygonTools.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
