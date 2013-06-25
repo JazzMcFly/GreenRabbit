@@ -19,6 +19,11 @@ public class Laser : MonoBehaviour {
 	private float length = 50.0f;
 	public float damage = 1000.0f;
 	
+	public float startingAngle = 0.0f;
+	public float sweepAngle = 0.0f;
+	public float sweepDelay = 0.0f;
+	public float sweepTime = 0.0f;
+	
 	//Stuff needed for rotation and movement of the laser
 	public GameObject anchor;
 	public bool followAnchor = true;
@@ -32,9 +37,10 @@ public class Laser : MonoBehaviour {
 	void Start () {
 		//yield return StartCoroutine(FadeIn(warmupTime));
 		SetupPhysics();
-		SetAngle(90.0f);
-		StartCoroutine(Sweep (-110.0f, 2.0f));
+		SetAngle(startingAngle);
 		StartCoroutine(SetupLifeSpan(lifeSpan));
+		StartCoroutine(Sweep(sweepAngle, sweepTime));
+		 
 	}
 	
 	// Update is called once per frame

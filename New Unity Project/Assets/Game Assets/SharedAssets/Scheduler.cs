@@ -96,6 +96,12 @@ public class Scheduler : MonoBehaviour {
 		}
 	}
 	
+	public void AddRelativeMovementEvent(FVector2 distanceVector, float traveltime, int interType = 0, float delay = 0.0f, bool guaranteeArrival = false) {
+		SetupPhysics();
+		FVector2 destination = new FVector2(body.Position.X + distanceVector.X, body.Position.Y + distanceVector.Y);
+		AddMovementEvent(destination, traveltime, interType, delay, guaranteeArrival);
+	}
+	
 	private FVector2 GetConstantSpeed(FVector2 startPoint, FVector2 endPoint, float travelTime) {
 		FVector2 distanceVector = endPoint - startPoint;
 		FVector2 speedVector = new FVector2(distanceVector.X/travelTime, distanceVector.Y/travelTime);	
