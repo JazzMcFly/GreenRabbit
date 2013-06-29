@@ -86,8 +86,12 @@ public class Weapon : MonoBehaviour {
 		//print ("attempting to fire");
 		if(fireRateTimer <= 0.0f) {
 			fireRateTimer = fireRate;	
-			Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
-			//GameObject shot =(GameObject) Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);		
+			GameObject newObject =(GameObject) Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
+			if(newObject.GetComponent<ProjectileBasic>() != null) {
+				//probably need to pass weapon info down for OnHit callbacks
+			} else if(newObject.GetComponent<Laser>() != null) {
+				//probably need to pass info about host object in order to kill the laser when the host dies.	
+			}
 		}
 	}
 			
