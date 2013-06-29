@@ -84,6 +84,11 @@ public class Laser : MonoBehaviour {
 		yield return new WaitForSeconds(waitTime);
 	}
 	
+	public void SetAnchor(GameObject host) {
+		anchor = host;
+		
+	}
+	
 	/// <summary>
 	/// Setups the life span. Destroys itself when it the timer runs out the laser destroys itself. Later should call a FadeOut sequence rather than destruction
 	/// </summary>
