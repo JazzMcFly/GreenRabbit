@@ -12,7 +12,7 @@ public class ChargeGUI : MonoBehaviour {
 	public GameObject target;
 	public GameObject weaponObject; //the weapon associated with the UI
 
-	private Weapon weapon;
+	private WeaponPlayer weapon;
 	
 	private Vector3 pixelCoordinates = new Vector3(0.0f,0.0f,0.0f);
 	private Rect temp;
@@ -21,7 +21,7 @@ public class ChargeGUI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		maxWidth = width;
-		weapon = weaponObject.GetComponent<Weapon>();
+		weapon = weaponObject.GetComponent<WeaponPlayer>();
 	}
 	
 	// Update is called once per frame

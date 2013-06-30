@@ -37,13 +37,14 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>E:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BossCenterWeapMovement.cs" />
      <Compile Include="Assets\Chapter1Script.cs" />
      <Compile Include="Assets\FarseerUnity\Base\FSCollisionGroup.cs" />
      <Compile Include="Assets\FarseerUnity\Base\FSEnums.cs" />
@@ -195,6 +196,7 @@
      <Compile Include="Assets\Game Assets\SharedAssets\TriangleEqualateral.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\TriangleIsosceles.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\Weapon.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\WeaponPlayer.cs" />
      <Compile Include="Assets\Orthello\Examples\0 - Simple Examples\(Unity Pro) NavMesh Pathfinding\Agent.cs" />
      <Compile Include="Assets\Orthello\Examples\0 - Simple Examples\3D integration\App.cs" />
      <Compile Include="Assets\Orthello\Examples\0 - Simple Examples\3D integration\Arrow.cs" />
