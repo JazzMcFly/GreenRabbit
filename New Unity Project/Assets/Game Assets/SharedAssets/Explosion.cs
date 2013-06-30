@@ -80,6 +80,11 @@ public class Explosion : MonoBehaviour {
 			
 			float playerImpact = result.Y * distance * (maxImpactOnPlayer - minImpactOnPlayer) / maxRadius;
 			fixtureB.Body.LinearVelocity = new FVector2(fixtureB.Body.LinearVelocity.X, minImpactOnPlayer + playerImpact);
+		} else {
+			Health objectHealth = fixtureB.Body.UserFSBodyComponent.gameObject.GetComponent<Health>();
+			if(objectHealth != null) {
+				objectHealth.Damage(GetDamage());	
+			}
 		}
 		return false;
 	}

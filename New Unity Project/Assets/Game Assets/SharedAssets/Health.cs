@@ -162,7 +162,7 @@ public class Health : MonoBehaviour {
 	
 	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
 		
-		GameObject objectB = fixtureB.Body.UserFSBodyComponent.gameObject;
+	/*	GameObject objectB = fixtureB.Body.UserFSBodyComponent.gameObject;
 		
 		if(objectB.tag == "Bullet") {
 			ProjectileBasic bulletInfo = objectB.GetComponent<ProjectileBasic>();
@@ -178,7 +178,7 @@ public class Health : MonoBehaviour {
 			} else {
 				print ("Object is tagged as \"Explosion\" but does not have the associated component");	
 			}
-		}
+		}*/
 		return true;	
 	}
 /*	
