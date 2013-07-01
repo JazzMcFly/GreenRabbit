@@ -8,6 +8,7 @@ public class Chapter1Script : MonoBehaviour {
 	//EnemyList
 	public GameObject EnemyBasic;
 	public GameObject EnemyWithLaser;
+	public GameObject Boss;
 	
 	// Use this for initialization
 	void Start () {
@@ -32,7 +33,11 @@ public class Chapter1Script : MonoBehaviour {
 		enemyLaserUser.AddRelativeMovementEvent (new FVector2(0.0f, -3.0f), 0.5f, 0, 0.0f, true);
 		enemyLaserUser.AddFireEvent(6.0f, 2, 1.0f);
 		
-		print ("Done!");
+		yield return new WaitForSeconds(5.0f);
+		
+		Scheduler bossSched = Scheduler.SpawnEnemy(Boss, new FVector2(0.0f, 11.0f));
+		bossSched.AddRelativeMovementEvent(new FVector2(0.0f, -2.0f), 0.5f, 0, 0.0f, true);
+		
 	}
 	
 	public IEnumerator WaitTime(float seconds) {

@@ -5,6 +5,7 @@ using FVector2 = Microsoft.Xna.Framework.FVector2;
 
 public class AIWeapon : Weapon {
 	
+	public bool autofire = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -15,7 +16,9 @@ public class AIWeapon : Weapon {
 	
 	// Update is called once per frame
 	void Update () {
-		TickWeaponCoolDown();	
-		Fire();
+		if(autofire) {
+			TickWeaponCoolDown();	
+			Fire();
+		}
 	}
 }

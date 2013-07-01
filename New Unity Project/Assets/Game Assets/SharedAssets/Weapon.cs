@@ -36,6 +36,7 @@ public class Weapon : MonoBehaviour {
 				//probably need to pass weapon info down for OnHit callbacks
 			} else if(newObject.GetComponent<Laser>() != null) {
 				newObject.transform.parent = gameObject.transform;
+				newObject.GetComponent<Laser>().SetAnchor(gameObject);
 				//probably need to pass info about host object in order to kill the laser when the host dies.	
 			}
 		}
