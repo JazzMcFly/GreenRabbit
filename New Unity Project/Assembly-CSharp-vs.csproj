@@ -46,6 +46,7 @@
   <ItemGroup>
      <Compile Include="Assets\BossCenterWeapMovement.cs" />
      <Compile Include="Assets\Chapter1Script.cs" />
+     <Compile Include="Assets\DeathScriptBoss.cs" />
      <Compile Include="Assets\FarseerUnity\Base\FSCollisionGroup.cs" />
      <Compile Include="Assets\FarseerUnity\Base\FSEnums.cs" />
      <Compile Include="Assets\FarseerUnity\Base\FSJointComponent.cs" />
@@ -182,6 +183,7 @@
      <Compile Include="Assets\Game Assets\SharedAssets\AIWeapon.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\ArmorFan.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\ArmorShard.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\ClearField.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\DiamondShape.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\Explosion.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\GUIscripts\ChargeGUI.cs" />

@@ -61,9 +61,12 @@ public class Laser : MonoBehaviour {
 	/// Sweep time.
 	/// </param>
 	public IEnumerator Sweep(float degreesToSweep, float sweepTime) {
-		float angularVelocityInRadians = degreesToSweep / 180.0f * Mathf.PI / sweepTime;
-		body.AngularVelocity = angularVelocityInRadians;
 		
+		float angularVelocityInRadians = degreesToSweep / 180.0f * Mathf.PI / sweepTime;
+		yield return new WaitForSeconds(sweepDelay);
+
+		body.AngularVelocity = angularVelocityInRadians;
+
 		yield return new WaitForSeconds(sweepTime);
 		
 		body.AngularVelocity = 0.0f;

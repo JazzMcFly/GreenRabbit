@@ -16,9 +16,9 @@ public class Explosion : MonoBehaviour {
 	public float maxImpactOnPlayer = 0.0f;
 	public float minImpactOnPlayer = 0.0f;
 	
-	private Body body;
-	private Shape shape;
-	private float expansionRate;
+	protected Body body;
+	protected Shape shape;
+	protected float expansionRate;
 	
 	// Use this for initialization
 	void Start () {
@@ -49,7 +49,7 @@ public class Explosion : MonoBehaviour {
 		return damage;	
 	}
 	
-	private void SetupPhysics() {	
+	protected void SetupPhysics() {	
 		if(body == null) {			
 			body = GetComponent<FSBodyComponent>().PhysicsBody;
 			shape = GetComponent<FSShapeComponent>().GetShape();
@@ -66,7 +66,7 @@ public class Explosion : MonoBehaviour {
 		body.OnCollision += OnCollisionEvent;
 	}
 
-	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
+	protected virtual bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
 		
 		if(fixtureB.Body.UserFSBodyComponent.gameObject.tag == "Player") {
 			//print ("IMPACT!!");
