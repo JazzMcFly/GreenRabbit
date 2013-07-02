@@ -87,9 +87,11 @@ public class ProjectileBasic : MonoBehaviour {
 			Health objectHealth = fixtureB.Body.UserFSBodyComponent.gameObject.GetComponent<Health>();
 			if(objectHealth != null) {
 				objectHealth.Damage(GetDamage());
+				GameObject.Destroy(gameObject);
 			}
-			//print ("Projectile destoryed");
-			GameObject.Destroy(gameObject);
+			if(fixtureB.Body.IsStatic) {
+				GameObject.Destroy(gameObject);
+			}
 		//}
 		return true;
 	}

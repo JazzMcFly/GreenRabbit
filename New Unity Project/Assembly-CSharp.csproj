@@ -37,16 +37,13 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>E:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BossCenterWeapMovement.cs" />
-     <Compile Include="Assets\Chapter1Script.cs" />
-     <Compile Include="Assets\DeathScriptBoss.cs" />
      <Compile Include="Assets\FarseerUnity\Base\FSCollisionGroup.cs" />
      <Compile Include="Assets\FarseerUnity\Base\FSEnums.cs" />
      <Compile Include="Assets\FarseerUnity\Base\FSJointComponent.cs" />
@@ -180,6 +177,7 @@
      <Compile Include="Assets\FarseerUnity\FSWorldComponent.cs" />
      <Compile Include="Assets\FarseerUnity\Support Files\Test_iOS\TestII.cs" />
      <Compile Include="Assets\FarseerUnity\Support Files\Tutorials [PDF]\Tutorials\Part 4\CollisionEventsDone\TestCollisionEventsDoneCp.cs" />
+     <Compile Include="Assets\Game Assets\Chapter1Script.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\AIWeapon.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\ArmorFan.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\ArmorShard.cs" />
@@ -192,13 +190,18 @@
      <Compile Include="Assets\Game Assets\SharedAssets\Laser.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\PhysicsProperties.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\PlayerController.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\PlayerStats.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\PrimaryPowerUp.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\ProjectileBasic.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\ProjectileCluster.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\Scheduler.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\TestBoss\BossCenterWeapMovement.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\TestBoss\DeathScriptBoss.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\TriangleEqualateral.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\TriangleIsosceles.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\Weapon.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\WeaponPlayer.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\enemyAssets\Spoils.cs" />
      <Compile Include="Assets\Orthello\Examples\0 - Simple Examples\(Unity Pro) NavMesh Pathfinding\Agent.cs" />
      <Compile Include="Assets\Orthello\Examples\0 - Simple Examples\3D integration\App.cs" />
      <Compile Include="Assets\Orthello\Examples\0 - Simple Examples\3D integration\Arrow.cs" />
@@ -296,8 +299,6 @@
      <Compile Include="Assets\Orthello\Standard Assets\OT\_Base\OTPB.cs" />
      <Compile Include="Assets\Orthello\Standard Assets\OT\_Base\OTSounds.cs" />
      <Compile Include="Assets\Orthello\Standard Assets\OT\_Base\OTTimeCycle.cs" />
-     <Compile Include="Assets\PlayerStats.cs" />
-     <Compile Include="Assets\PrimaryPowerUp.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />

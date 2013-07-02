@@ -11,11 +11,12 @@ public class PlayerStats : MonoBehaviour {
 	
 	public GameObject [] primaryProjectileList;
 	public int [] powerThresholds;
-	public int maxPower;
 	
 	private Weapon[] weaponList;
 	private int powerLevel = 0;	
 	private int powerIndex = 0; //index into primaryProjectileList and powerThresholds
+	private int maxPower;
+
 	
 	// Use this for initialization
 	void Start () {
@@ -23,6 +24,8 @@ public class PlayerStats : MonoBehaviour {
 			print ("Player projectiles aren't properly setup in inspector!!");	
 		}
 		weaponList = gameObject.GetComponentsInChildren<Weapon>();
+		maxPower = powerThresholds[powerThresholds.Length-1];
+		weaponList[0].SetProjectile(primaryProjectileList[0]);
 	}
 	
 	// Update is called once per frame
@@ -35,13 +38,11 @@ public class PlayerStats : MonoBehaviour {
 			//do nothing
 		} else {
 			powerLevel += amount;
-			if(powerLevel >= powerThresholds[powerIndex+1]) {
+			while(powerIndex < powerThresholds.Length - 1 && powerLevel >= powerThresholds[powerIndex+1]) {
 				powerIndex++;
-				while(powerIndex < powerThresholds.Length && powerLevel >= powerThresholds[powerIndex+1]) {
-					powerIndex++;	
-				}
-				weaponList[0].SetProjectile(primaryProjectileList[powerIndex]);
 			}
+			weaponList[0].SetProjectile(primaryProjectileList[powerIndex]);
+			
 		}
 	}
 	
@@ -56,6 +57,7 @@ public class PlayerStats : MonoBehaviour {
 			while(powerLevel < powerThresholds[powerIndex]){
 				powerIndex--;
 				weaponList[0].SetProjectile(primaryProjectileList[powerIndex]);
+				print ("changed Weapon");
 			}
 		}
 	}
