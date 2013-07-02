@@ -61,15 +61,16 @@ public class Laser : MonoBehaviour {
 	/// Sweep time.
 	/// </param>
 	public IEnumerator Sweep(float degreesToSweep, float sweepTime) {
-		
-		float angularVelocityInRadians = degreesToSweep / 180.0f * Mathf.PI / sweepTime;
-		yield return new WaitForSeconds(sweepDelay);
+		if(degreesToSweep > 0.0f || degreesToSweep < 0.0f) {
+			float angularVelocityInRadians = degreesToSweep / 180.0f * Mathf.PI / sweepTime;
+			yield return new WaitForSeconds(sweepDelay);
 
-		body.AngularVelocity = angularVelocityInRadians;
+			body.AngularVelocity = angularVelocityInRadians;
 
-		yield return new WaitForSeconds(sweepTime);
+			yield return new WaitForSeconds(sweepTime);
 		
-		body.AngularVelocity = 0.0f;
+			body.AngularVelocity = 0.0f;
+		}
 	}
 	
 	public void SetAngle(float angleInDegrees) {
@@ -111,8 +112,10 @@ public class Laser : MonoBehaviour {
 			body = GetComponent<FSBodyComponent>().PhysicsBody;
 			Vertices laserPoints = PolygonTools.CreateCapsule(length, width, edgeCount);
 			laserPoints.Translate(new FVector2(0.0f, -(offsetRadius + length/2.0f)));
-			body.CreateFixture(new PolygonShape(laserPoints, 1.0f));
+			PolygonShape shape = new PolygonShape(laserPoints, 1.0f);
+			body.CreateFixture(shape);
 			body.OnCollision += OnCollisionEvent;
+			
 		}
 	}
 	
