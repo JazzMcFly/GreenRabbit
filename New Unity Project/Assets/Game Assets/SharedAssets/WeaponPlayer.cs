@@ -3,6 +3,8 @@ using System.Collections;
 using FarseerPhysics.Dynamics;
 using FVector2 = Microsoft.Xna.Framework.FVector2;
 
+//PlayerWeapon is different from Weapon in that it cares for I/O
+
 
 public class WeaponPlayer : Weapon {
 	

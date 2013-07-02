@@ -57,6 +57,10 @@ public class Weapon : MonoBehaviour {
 		gameObject.transform.Rotate( new Vector3(0.0f, 0.0f,zAngle));
 	}
 	
+	public void SetProjectile(GameObject proj) {
+		projectile = proj;
+	}
+	
 	protected void TickWeaponCoolDown() {
 		fireRateTimer -= Time.deltaTime;
 	}
