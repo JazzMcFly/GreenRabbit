@@ -80,16 +80,20 @@ public class ProjectileBasic : MonoBehaviour {
 			if(fixtureB.Body.UserFSBodyComponent.gameObject.tag == "Explosion") {
 				return false;
 			}
-			if(explosion != null) {
-				Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
-			}
+
 			
 			Health objectHealth = fixtureB.Body.UserFSBodyComponent.gameObject.GetComponent<Health>();
 			if(objectHealth != null) {
 				objectHealth.Damage(GetDamage());
+				if(explosion != null) {
+					Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
+				}
 				GameObject.Destroy(gameObject);
 			}
 			if(fixtureB.Body.IsStatic) {
+				if(explosion != null) {
+					Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
+				}
 				GameObject.Destroy(gameObject);
 			}
 		//}
