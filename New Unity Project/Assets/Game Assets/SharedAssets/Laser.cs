@@ -45,8 +45,13 @@ public class Laser : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		if(followAnchor == true ) {
-			UpdatePositionToAnchor();	
+			if(anchorBody != null) {
+				body.LinearVelocity = anchorBody.LinearVelocity;
+			} else {
+				UpdatePositionToAnchor();
+			}
 		}
 	
 	}
@@ -90,6 +95,9 @@ public class Laser : MonoBehaviour {
 	
 	public void SetAnchor(GameObject host) {
 		anchor = host;
+		if(anchor != null && anchor.GetComponent<FSBodyComponent>() != null) {
+			anchorBody = anchor.GetComponent<FSBodyComponent>().PhysicsBody;
+		}
 		
 	}
 	
