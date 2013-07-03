@@ -25,7 +25,7 @@ public class Laser : MonoBehaviour {
 	public float sweepTime = 0.0f;
 	
 	//Stuff needed for rotation and movement of the laser
-	public GameObject anchor;
+	private GameObject anchor;
 	public bool followAnchor = true;
 	public float offsetRadius = 0.0f;
 	private Body anchorBody;
@@ -112,8 +112,9 @@ public class Laser : MonoBehaviour {
 			body = GetComponent<FSBodyComponent>().PhysicsBody;
 			Vertices laserPoints = PolygonTools.CreateCapsule(length, width, edgeCount);
 			laserPoints.Translate(new FVector2(0.0f, -(offsetRadius + length/2.0f)));
-			PolygonShape shape = new PolygonShape(laserPoints, 1.0f);
-			body.CreateFixture(shape);
+			 
+			Fixture fix = body.CreateFixture(new PolygonShape(laserPoints, 1.0f));
+			CollisionPresets.SetAsEnemyShot(fix);
 			body.OnCollision += OnCollisionEvent;
 			
 		}
@@ -123,6 +124,7 @@ public class Laser : MonoBehaviour {
 	
 		Health health = fixtureB.Body.UserFSBodyComponent.gameObject.GetComponent<Health>();
 		if(health != null) {
+			print ("LAZER DAMAGE");
 			health.Damage(damage);
 		}
 		return false;

@@ -6,6 +6,7 @@ using FVector2 = Microsoft.Xna.Framework.FVector2;
 public class Chapter1Script : MonoBehaviour {
 	
 	//EnemyList
+	public GameObject StaticLaser;
 	public GameObject EnemyBasic;
 	public GameObject EnemyWithLaser;
 	public GameObject Boss;
@@ -21,6 +22,13 @@ public class Chapter1Script : MonoBehaviour {
 	}
 	
 	public IEnumerator RunScript() {
+		
+		Scheduler schedStaticLaser = Scheduler.SpawnEnemy(StaticLaser, new FVector2( 5.2f, 11.0f));
+		schedStaticLaser.AddRelativeMovementEvent(new FVector2(0.0f, -15.0f), 10.0f, 0, 0.0f, true);
+		schedStaticLaser.AddFireEvent(1.0f, 1, 0.0f);
+		
+		yield return new WaitForSeconds(10.0f);
+		
 		for(int i = 0; i < 5; i++) {
 			Scheduler enemy0 = Scheduler.SpawnEnemy(EnemyBasic, new FVector2((float)(2*i - 5.0f), 10.0f));
 			enemy0.AddRelativeMovementEvent(new FVector2(0.0f, -3.0f), 1.0f, 0, i*0.5f);
