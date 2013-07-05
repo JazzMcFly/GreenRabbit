@@ -184,6 +184,12 @@ public class PlayerStats : MonoBehaviour {
 		return maxTertiaryAmmo;	
 	}
 	
+	public void OnFireTertiaryWeapon() {
+		SubtractTertiaryAmmoCount();
+		health.HealToMax();
+		health.SetInvulnrable(5.0f);
+	}
+	
 	
 	
 	public void SubtractLifeCount() {

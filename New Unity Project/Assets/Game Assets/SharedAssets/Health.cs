@@ -15,6 +15,7 @@ public class Health : MonoBehaviour {
 	public float regenDelay = 1.0f;
 	public bool invulnrable = false;
 	public float spawnInvulnerableTime = 0.0f;
+	public bool destroyOnDeath = true;
 	
 	[HideInInspector]
 	public bool isDead = false;
@@ -37,6 +38,7 @@ public class Health : MonoBehaviour {
 		
 		if(spawnInvulnerableTime > 0.0f) {
 			invulnrable = true;
+			invulnerableTimer = spawnInvulnerableTime;
 		}
 		//Test to make sure callbacks work :)
 		//this.OnDamageTaken += AnnounceDamage;
@@ -48,12 +50,12 @@ public class Health : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(invulnrable) {
-			spawnInvulnerableTime -= Time.deltaTime;
-			if(spawnInvulnerableTime <= 0.0f) {
+			invulnerableTimer -= Time.deltaTime;
+			if(invulnerableTimer <= 0.0f) {
 				invulnrable = false;	
 			}
 		}
-		if(isDead) {
+		if(isDead && destroyOnDeath) {
 			GameObject.Destroy(gameObject);	
 		}
 		
@@ -110,6 +112,11 @@ public class Health : MonoBehaviour {
 		ExecuteDeathEvents();
 	}
 	
+	public void SetInvulnrable(float timeInSeconds) {
+		invulnrable = true;
+		invulnerableTimer = timeInSeconds;
+	}
+	
 	public void ResetRegenTimer() {
 		regenTimer = regenDelay;	
 	}
@@ -161,24 +168,6 @@ public class Health : MonoBehaviour {
 	}
 	
 	private bool OnCollisionEvent(Fixture fixtureA, Fixture fixtureB, Contact contact) {
-		
-	/*	GameObject objectB = fixtureB.Body.UserFSBodyComponent.gameObject;
-		
-		if(objectB.tag == "Bullet") {
-			ProjectileBasic bulletInfo = objectB.GetComponent<ProjectileBasic>();
-			if(bulletInfo != null) {
-				Damage(bulletInfo.GetDamage());
-			} else {
-				print("Object is tagged as \"Bullet\" but does not have the associated component"); 	
-			}
-		} else if(objectB.tag == "Explosion") {
-			Explosion explosionInfo = objectB.GetComponent<Explosion>();
-			if(explosionInfo != null) {
-				Damage(explosionInfo.GetDamage());	
-			} else {
-				print ("Object is tagged as \"Explosion\" but does not have the associated component");	
-			}
-		}*/
 		return true;	
 	}
 /*	
