@@ -193,7 +193,8 @@
      <Compile Include="Assets\Game Assets\SharedAssets\PhysicsProperties.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\PlayerController.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\PlayerStats.cs" />
-     <Compile Include="Assets\Game Assets\SharedAssets\PrimaryPowerUp.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\PowerUp\AmmoPowerUp.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\PowerUp\PrimaryPowerUp.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\ProjectileBasic.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\ProjectileCluster.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\Scheduler.cs" />

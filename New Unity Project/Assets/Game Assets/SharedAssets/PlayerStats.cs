@@ -98,6 +98,21 @@ public class PlayerStats : MonoBehaviour {
 		}
 	}
 	
+	public void AddAmmoCount(int amount, WeaponPlayer.WeaponInput type) {
+		switch(type) {
+		case WeaponPlayer.WeaponInput.Primary:
+			break;
+		case WeaponPlayer.WeaponInput.Secondary:
+			AddSecondaryAmmoCount(amount);
+			break;
+		case WeaponPlayer.WeaponInput.Tertiary:
+			AddTertiaryAmmoCount(amount);
+			break;
+		default:
+			break;
+		}
+	}
+	
 	public int GetSecondaryAmmoCount() {
 		return secondaryAmmoCount;	
 	}
