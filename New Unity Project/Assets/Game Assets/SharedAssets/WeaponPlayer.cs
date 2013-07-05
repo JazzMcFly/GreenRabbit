@@ -32,8 +32,12 @@ public class WeaponPlayer : Weapon {
 	
 	private float currentCharge = 0.0f;
 	
+	private PlayerStats pStats;
+	
 	// Use this for initialization
 	void Start () {
+		
+		pStats = gameObject.transform.parent.gameObject.GetComponent<PlayerStats>();
 		
 		switch (weaponInput) {
 			
@@ -60,11 +64,11 @@ public class WeaponPlayer : Weapon {
 		switch(weaponType) {
 		case WeaponType.Auto:
 			if(Input.GetKey(weaponButton))
-				Fire();
+				CheckAmmoAndFire();
 			break;
 		case WeaponType.SingleShot:
 			if(Input.GetKeyDown(weaponButton))
-				Fire();
+				CheckAmmoAndFire();
 			break;
 		case WeaponType.Charge: 
 			if(Input.GetKey(weaponButton))
@@ -85,7 +89,7 @@ public class WeaponPlayer : Weapon {
 	
 	public void ChargeRelease() {
 		if(currentCharge >= minChargeToFire) {
-			Fire ();	
+			CheckAmmoAndFire ();	
 		}
 		currentCharge = 0.0f; 
 	}
@@ -105,5 +109,32 @@ public class WeaponPlayer : Weapon {
 	
 	public float GetMinCharge() {
 		return minChargeToFire;	
+	}
+	
+	public void CheckAmmoAndFire() {
+		
+		switch(weaponInput) {
+		case WeaponInput.Primary:
+			Fire ();
+			break;
+		case WeaponInput.Secondary:
+			if(pStats.GetSecondaryAmmoCount() > 0) {
+				pStats.SubtractSecondaryAmmoCount();
+				Fire();
+			} else {
+				//Play Empty Sound?	
+			}
+			break;
+		case WeaponInput.Tertiary:
+			if(pStats.GetTertiaryAmmoCount() > 0) {
+				pStats.SubtractTertiaryAmmoCount();
+				Fire();
+			} else {
+				
+			}
+			break;
+		default:
+			break;
+		}
 	}
 }

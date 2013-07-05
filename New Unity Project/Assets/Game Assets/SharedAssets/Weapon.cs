@@ -3,7 +3,8 @@ using System.Collections;
 using FarseerPhysics.Dynamics;
 using FVector2 = Microsoft.Xna.Framework.FVector2;
 
-public delegate void OnKill();
+public delegate void OnKillEvent();
+public delegate void OnFireEvent();
 
 public class Weapon : MonoBehaviour {
 	
@@ -14,6 +15,9 @@ public class Weapon : MonoBehaviour {
 	
 	protected float fireRateTimer = 0.0f;
 	protected FVector2 direction = new FVector2(0.0f, 1.0f);
+	
+	//CallBack lists
+	private Hashtable eventTable = new Hashtable();
 		
 	// Use this for initialization
 	void Start () {
@@ -39,6 +43,26 @@ public class Weapon : MonoBehaviour {
 				newObject.GetComponent<Laser>().SetAnchor(gameObject);
 				//probably need to pass info about host object in order to kill the laser when the host dies.	
 			}
+			ExecuteFireEvents();
+		}
+	}
+	
+    public event OnFireEvent OnFire
+    {
+        add
+        {
+			eventTable["FireEvent"] = (OnFireEvent)eventTable["FireEvent"] + value;
+        }
+        remove
+        {
+			eventTable["FireEvent"] = (OnFireEvent)eventTable["FireEvent"] - value;
+        }
+    }	
+	
+	private void ExecuteFireEvents() {
+		OnFireEvent temp = (OnFireEvent)eventTable["FireEvent"];
+		if(temp != null){
+			temp();
 		}
 	}
 
