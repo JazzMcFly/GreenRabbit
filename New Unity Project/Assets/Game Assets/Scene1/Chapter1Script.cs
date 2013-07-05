@@ -22,18 +22,20 @@ public class Chapter1Script : MonoBehaviour {
 	}
 	
 	public IEnumerator RunScript() {
+		for(int i = 0; i < 4; i++) {
+			Scheduler schedStaticLaser = Scheduler.SpawnEnemy(StaticLaser, new FVector2( 5.2f, 11.0f));
+			schedStaticLaser.AddRelativeMovementEvent(new FVector2(0.0f, -15.0f), 10.0f, 0, 0.0f, true);
+			schedStaticLaser.AddFireEvent(1.0f, 1, 0.0f);
+			yield return new WaitForSeconds(1.5f);
+		}
 		
-		Scheduler schedStaticLaser = Scheduler.SpawnEnemy(StaticLaser, new FVector2( 5.2f, 11.0f));
-		schedStaticLaser.AddRelativeMovementEvent(new FVector2(0.0f, -15.0f), 10.0f, 0, 0.0f, true);
-		schedStaticLaser.AddFireEvent(1.0f, 1, 0.0f);
-		
-		yield return new WaitForSeconds(10.0f);
+		yield return new WaitForSeconds(2.0f);
 		
 		for(int i = 0; i < 5; i++) {
-			Scheduler enemy0 = Scheduler.SpawnEnemy(EnemyBasic, new FVector2((float)(2*i - 5.0f), 10.0f));
+			Scheduler enemy0 = Scheduler.SpawnEnemy(EnemyBasic, new FVector2((float)(2*i - 4.5f), 10.0f));
 			enemy0.AddRelativeMovementEvent(new FVector2(0.0f, -3.0f), 1.0f, 0, i*0.5f);
 			enemy0.AddMovementEvent(new FVector2(-8.0f, 12.0f), 1.0f, 1, 2.5f, true); 
-			enemy0.AddFireEvent(0.5f, 2, 2.0f + i*0.5f);
+			enemy0.AddFireEvent(1.0f, 5, 2.0f + i*0.5f);
 		}
 		yield return new WaitForSeconds(5.0f);
 		

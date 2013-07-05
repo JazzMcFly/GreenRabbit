@@ -7,7 +7,7 @@ using System.Collections;
 public class PlayerStats : MonoBehaviour {
 	
 	
-
+	public int LifeCount;
 	
 	public GameObject [] primaryProjectileList;
 	public int [] powerThresholds;
@@ -22,6 +22,8 @@ public class PlayerStats : MonoBehaviour {
 	
 	public int maxTertiaryAmmo;
 	private int tertiaryAmmoCount;
+	
+	private Health health;
 
 	
 	// Use this for initialization
@@ -36,6 +38,9 @@ public class PlayerStats : MonoBehaviour {
 		
 		secondaryAmmoCount = maxSecondaryAmmo;
 		tertiaryAmmoCount = maxTertiaryAmmo;
+		
+		health = GetComponent<Health>();
+		health.OnDeath += SubtractLifeCount;
 	}
 	
 	// Update is called once per frame
@@ -177,6 +182,16 @@ public class PlayerStats : MonoBehaviour {
 	
 	public int GetMaxTertiaryAmmoCount() {
 		return maxTertiaryAmmo;	
+	}
+	
+	
+	
+	public void SubtractLifeCount() {
+		LifeCount--;	
+	}
+	
+	public void AddLifeCount(int amount) {
+		LifeCount += amount;	
 	}
 	
 }

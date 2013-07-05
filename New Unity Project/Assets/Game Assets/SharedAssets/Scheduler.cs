@@ -147,6 +147,7 @@ public class Scheduler : MonoBehaviour {
 		}
 		
 		for(int i = 0; i < fireEvent.shotCount; i++) {
+			print (i);
 			weapon.Fire();
 			yield return new WaitForSeconds(fireEvent.fireRate);
 		}

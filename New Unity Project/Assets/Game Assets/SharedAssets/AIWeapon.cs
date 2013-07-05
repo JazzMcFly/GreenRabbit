@@ -16,8 +16,8 @@ public class AIWeapon : Weapon {
 	
 	// Update is called once per frame
 	void Update () {
+		TickWeaponCoolDown();	
 		if(autofire) {
-			TickWeaponCoolDown();	
 			Fire();
 		}
 	}
