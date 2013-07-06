@@ -8,10 +8,13 @@ using FarseerPhysics.Collision.Shapes;
 
 public class ClearField : Explosion {
 	
-
+	public bool hasDamage = false;
+	
 	// Use this for initialization
 	void Start () {
-		damage = 0.0f;
+		if(!hasDamage) {
+			damage = 0.0f;
+		}
 		SetupPhysics();
 		
 	}

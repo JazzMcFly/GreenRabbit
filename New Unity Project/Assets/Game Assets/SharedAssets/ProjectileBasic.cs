@@ -12,7 +12,8 @@ public class ProjectileBasic : MonoBehaviour {
 	public bool fixedRotation = true;
 	public bool penetrating = false;
 	public bool hasGravity = false;
-	public bool isBouncy = false;
+	public int bounceCount = 0;
+	public bool destroysBullets = false;
 	
 	public GameObject explosion;
 	
@@ -80,21 +81,30 @@ public class ProjectileBasic : MonoBehaviour {
 			if(fixtureB.Body.UserFSBodyComponent.gameObject.tag == "Explosion") {
 				return false;
 			}
-
-			
 			Health objectHealth = fixtureB.Body.UserFSBodyComponent.gameObject.GetComponent<Health>();
 			if(objectHealth != null) {
 				objectHealth.Damage(GetDamage());
-				if(explosion != null) {
-					Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
+				if(!penetrating) {
+					if(explosion != null) {
+						Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
+					}
+					GameObject.Destroy(gameObject);
+				} else {
+					return false;
 				}
-				GameObject.Destroy(gameObject);
 			}
 			if(fixtureB.Body.IsStatic) {
-				if(explosion != null) {
-					Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
+				if(bounceCount > 0) {
+					bounceCount--;
+				} else {
+					if(explosion != null) {
+						Instantiate(explosion, gameObject.transform.position, gameObject.transform.rotation);
+					}
+					GameObject.Destroy(gameObject);
 				}
-				GameObject.Destroy(gameObject);
+			} else if(destroysBullets && fixtureB.Body.UserFSBodyComponent.gameObject.GetComponent<ProjectileBasic>() != null) {
+				//Should probably disarm rather than destroy the bullets.
+				GameObject.Destroy(fixtureB.Body.UserFSBodyComponent.gameObject);
 			}
 		//}
 		return true;
