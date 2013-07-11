@@ -3,11 +3,12 @@ using System.Collections;
 
 public class HealthGUI : MonoBehaviour {
 	
+	//All of these have to be the percentage of the total screen
 	public float screenPositionX;
 	public float screenPositionY;
 	
 	public float maxHeight;
-	public int width;
+	public float width;
 	
 	public Texture healthTexture;
 	
@@ -29,9 +30,11 @@ public class HealthGUI : MonoBehaviour {
 	/// </summary>
 	
 	void OnGUI () {
-		float actualHeight = objectHealth.GetCurrentHealth() / objectHealth.GetMaxHealth() * maxHeight;
-		float offsetY = maxHeight - actualHeight;
-		textureBox.Set(screenPositionX, screenPositionY + offsetY, width, actualHeight);
+		int screenHeight = Screen.height;
+		int screenWidth = Screen.width;
+		float actualHeight = objectHealth.GetCurrentHealth() / objectHealth.GetMaxHealth() * (maxHeight*screenHeight);
+		float offsetY = maxHeight*screenHeight - actualHeight;
+		textureBox.Set(screenPositionX*screenWidth, (screenPositionY*screenHeight + offsetY), width*screenWidth, actualHeight);
 		GUI.DrawTexture(textureBox, healthTexture);
 	}
 }
