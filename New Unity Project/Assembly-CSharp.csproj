@@ -188,6 +188,7 @@
      <Compile Include="Assets\Game Assets\SharedAssets\GUIscripts\AmmoGUI.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\GUIscripts\ChargeGUI.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\GUIscripts\HealthGUI.cs" />
+     <Compile Include="Assets\Game Assets\SharedAssets\GUIscripts\LifeCountGUI.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\Health.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\Laser.cs" />
      <Compile Include="Assets\Game Assets\SharedAssets\PhysicsProperties.cs" />
