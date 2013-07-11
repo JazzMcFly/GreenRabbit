@@ -8,6 +8,7 @@ using FarseerPhysics.Collision.Shapes;
 
 public class Explosion : MonoBehaviour {
 	
+	public CollisionPresets.EntityCategory collisionSetting;
 	public float minRadius = 1.0f;
 	public float maxRadius = 5.0f;
 	public float expansionTime = 0.2f;
@@ -15,6 +16,7 @@ public class Explosion : MonoBehaviour {
 	public float damage = 100.0f;
 	public float maxImpactOnPlayer = 0.0f;
 	public float minImpactOnPlayer = 0.0f;
+	
 	
 	protected Body body;
 	protected Shape shape;
@@ -35,6 +37,7 @@ public class Explosion : MonoBehaviour {
 		}		
 		body.DestroyFixture(body.FixtureList[0]);
 		body.CreateFixture(shape);
+		CollisionPresets.SetFixtureCollision(body.FixtureList[0], collisionSetting);
 		gameObject.transform.localScale = new Vector3(2*shape.Radius, 2*shape.Radius, 1.0f);
 		//print (shape.Radius);
 		SetupPhysics();
@@ -57,6 +60,7 @@ public class Explosion : MonoBehaviour {
 			
 			body.DestroyFixture(body.FixtureList[0]);
 			body.CreateFixture(shape);
+			CollisionPresets.SetFixtureCollision(body.FixtureList[0], collisionSetting);		
 		
 			expansionRate = (maxRadius - minRadius) / expansionTime; 
 			gameObject.transform.localScale = new Vector3(2*minRadius, 2*minRadius, 1.0f);

@@ -6,7 +6,7 @@ using FarseerPhysics.Dynamics;
 
 public class CollisionPresets  {
 
-  enum _entityCategory {
+  public enum EntityCategory {
     SCENERY =   	0x0001, //Category.Cat1
     PLAYER =    	0x0002, //Category.Cat2
     PLAYER_SHOT =   0x0004, //Category.Cat3
@@ -39,5 +39,25 @@ public class CollisionPresets  {
 		fix.CollidesWith = Category.Cat2 | Category.Cat1; //SCENERY | PLAYER
 	}
 	
-
+	public static void SetFixtureCollision(Fixture fix, EntityCategory cat) {
+		switch (cat) {
+		case EntityCategory.SCENERY:
+			SetAsScenery(fix);
+			break;
+		case EntityCategory.PLAYER:
+			SetAsPlayer(fix);
+			break;
+		case EntityCategory.PLAYER_SHOT:
+			SetAsPlayerShot(fix);
+			break;
+		case EntityCategory.ENEMY:
+			SetAsEnemy(fix);
+			break;
+		case EntityCategory.ENEMY_SHOT:
+			SetAsEnemyShot(fix);
+			break;
+		default :
+			break;
+		}
+	}
 }

@@ -35,6 +35,7 @@ public class PlayerStats : MonoBehaviour {
 		maxPower = powerThresholds[powerThresholds.Length-1];
 		weaponList[0].SetProjectile(primaryProjectileList[0]); 
 		weaponList[1].OnFire += OnFireSecondary;
+		weaponList[2].OnFire += OnFireTertiaryWeapon;
 		
 		secondaryAmmoCount = maxSecondaryAmmo;
 		tertiaryAmmoCount = maxTertiaryAmmo;

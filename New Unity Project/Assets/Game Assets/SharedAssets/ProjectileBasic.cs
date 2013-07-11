@@ -8,6 +8,8 @@ public class ProjectileBasic : MonoBehaviour {
 	
 	public float damage = 1.0f;
 	public float projectileSpeed = 22.0f;
+	public float minVelocity = 0.0f;
+	private float minSquaredVelocity;
 	public float lifespan = 1.5f;
 	public bool fixedRotation = true;
 	public bool penetrating = false;
@@ -25,6 +27,7 @@ public class ProjectileBasic : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		minSquaredVelocity = Mathf.Pow(minVelocity, 2.0f);
 		SetupPhysics();
 	}
 	
@@ -34,6 +37,12 @@ public class ProjectileBasic : MonoBehaviour {
 		
 		if(lifespan <= 0.0f) {
 			GameObject.Destroy(gameObject);	
+		}
+		
+		if(body.LinearVelocity.LengthSquared() < minSquaredVelocity) {
+			FVector2 temp = body.LinearVelocity;
+			temp.Normalize();
+			body.LinearVelocity = new FVector2(temp.X*minVelocity, temp.Y*minVelocity);
 		}
 	}
 	
